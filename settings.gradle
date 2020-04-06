@@ -1,0 +1,10 @@
+include ':app'
+
+try {
+    def config = file("./module.gradle")
+    if (config.exists()) {
+        apply from: "./module.gradle"
+    }
+} catch (e) {
+    e.printStackTrace()
+}

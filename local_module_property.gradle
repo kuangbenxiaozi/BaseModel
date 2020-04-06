@@ -1,0 +1,27 @@
+println("before base_network_local = " + base_network_local
+        + " base_tookit_local = " + base_tookit_local
+        + " base_frame_local = " + base_frame_local)
+try {
+    def config = file("./module.gradle")
+    if (config.exists()) {
+        config.eachLine {
+            line ->
+                String content = line
+                println("============= ./module.gradle exist = " + content)
+                if (!content.contains("//")) {
+                    if (content.contains(":PionnerBaseNetwork")) {
+                        base_network_local = true
+                    } else if (content.contains(":PionnerBaseToolkit")) {
+                        base_tookit_local = true
+                    } else if (content.contains(":PionnerBaseFrame")) {
+                        base_frame_local = true
+                    }
+                }
+        }
+    }
+} catch (e) {
+    e.printStackTrace()
+}
+println("after base_network_local = " + base_network_local
+        + " base_tookit_local = " + base_tookit_local
+        + " base_frame_local = " + base_frame_local)
